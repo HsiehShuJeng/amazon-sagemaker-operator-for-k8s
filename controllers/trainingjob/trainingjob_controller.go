@@ -308,6 +308,9 @@ func (r *Reconciler) updateStatusWithAdditional(ctx reconcileRequestContext, tra
 	ctx.Log.Info("updateStatusWithAdditional", "trainingJobPrimaryStatus", trainingJobPrimaryStatus, "trainingJobSecondaryStatus", trainingJobSecondaryStatus, "additional", additional)
 
 	jobStatus := &ctx.TrainingJob.Status
+
+	jobStatus.SageMakerTrainingJobName = ctx.TrainingJobName
+
 	// When you call this function, update/refresh all the fields since we overwrite.
 	jobStatus.TrainingJobStatus = trainingJobPrimaryStatus
 	jobStatus.SecondaryStatus = trainingJobSecondaryStatus
